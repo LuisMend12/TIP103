@@ -24,3 +24,13 @@ def tiggerfy(word):
     word = word.replace("gg", "")
     word = word.replace("er", "")
     return word
+
+
+word = "Trigger"
+print(tiggerfy(word))
+
+word = "eggplant"
+print(tiggerfy(word))
+
+word = "Choir"
+print(tiggerfy(word))
