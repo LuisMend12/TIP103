@@ -15,26 +15,19 @@
 
 # True
 # False
+
 def non_decreasing(nums):
     count = 0
-    for i in range(len(nums) - 1):
-        if nums[i] > nums[i + 1]:
+    non_decreasing = True
+    # nums = sorted(nums)
+    # print(nums)
+    for i in range(len(nums)-1):
+        if not nums[i] <= nums[i+1]:
             count += 1
-            if count > 1:
-                return False
-            if i > 0 and nums[i - 1] > nums[i + 1]:
-                nums[i + 1] = nums[i]
-    return True
 
-    # count = 0
-    # for i in range(len(nums) - 1):
-    #     if nums[i] > nums[i + 1]:
-    #         count += 1
-    #         if count > 1:
-    #             return False
-    #         if i > 0 and nums[i-1] > nums[i+1]:
-    #             nums[i+1] = nums[i]
-    # return True
+    if count > 1:
+        non_decreasing = False
+    return non_decreasing
 
 
 nums = [4, 2, 3]
