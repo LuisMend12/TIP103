@@ -22,14 +22,51 @@ def merge_orders(sandwich_a, sandwich_b):
 
     if sandwich_a == None:
         return sandwich_b
+    
     if sandwich_b == None:
         return sandwich_a
     
-    return merge_orders(sandwich_b, sandwich_a)
+    # HINT 1: Your base cases above are correct. Keep them.
+    #
+    # HINT 2: The two assignments below make a loop: a1 -> b1 -> a1 -> ...
+    #   Trace it by hand with Bacon and Turkey. After both lines run, what
+    #   points to Lettuce? What points to Cheese? If nothing does, the rest
+    #   of both lists is lost.
+    #
+    # HINT 3: Before you overwrite sandwich_a.next, it holds something you
+    #   still need (the rest of sandwich_a). How can you keep hold of it --
+    #   or can you use it BEFORE it gets overwritten?
+    #
+    # HINT 4: A recursive call must work on a SMALLER problem. Because of the
+    #   loop, sandwich_b.next is sandwich_a and sandwich_a.next is sandwich_b,
+    #   so the call below gets the same two nodes again and never reaches a
+    #   base case. The next call should not include a1 at all.
+    #
+    # HINT 5: Finish this sentence, using lists that do NOT contain a1:
+    #   "a1.next should be the merge of ___ and ___."
+    #   After a1, whose turn is it to go first? That sentence is your
+    #   recursive call, and its result is what a1.next should be set to.
+    #
+    # HINT 6: If the recursive call hands you back the rest of the merged
+    #   list, do you need to set sandwich_b.next yourself in this call?
+    #   Trust the recursion to handle b1's pointer one level down.
+    #
+    # HINT 7: Don't return the recursive call's result directly -- that gives
+    #   back a node from deep in the list. Which node is the head of the
+    #   merged sandwich at THIS level? Return that one.
+    #
+    # HINT 8 (testing): merging rewires the nodes of sandwich_a in place. What
+    #   does sandwich_a look like by the time the second example call runs?
+    #   You may need a fresh list to see the expected second output.
+    #
+    # HINT 9 (complexity): how many calls are made in terms of the lengths of
+    #   the two lists, and how deep does the call stack get?
 
-    return merge_orders(sandwich_a, sandwich_b)
+    sandwich_a.next = sandwich_b
+    sandwich_b.next = sandwich_a
 
-    return print_linked_list(sandwich_a.value)
+    return merge_orders(sandwich_b.next, sandwich_a.next)
+
 
 # Example Usage:
 
